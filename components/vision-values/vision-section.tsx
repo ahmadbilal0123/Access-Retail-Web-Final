@@ -412,15 +412,12 @@ export default function VisionSection() {
             </motion.div>
           </div>
           </div>
-
-         
-
           {/* Values Diagram with PNG Images and Rounded Connections */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={valuesInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.7 }}
-            className="relative w-full values-diagram-container"
+            className="relative w-full values-diagram-container mt-10"
             style={{
               paddingBottom: "100%", // Square aspect ratio
               transformOrigin: "center center",
@@ -682,12 +679,16 @@ export default function VisionSection() {
                             linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
           background-size: 30px 30px;
         }
+.values-diagram-container {
+  transform: scale(1.2) !important;
+  margin: -4rem 0 2rem 0 !important; /* Moves it up */
+}
 
         /* Make values diagram larger on mobile */
         @media (max-width: 640px) {
           .values-diagram-container {
             transform: scale(1.3) !important;
-            margin: 8rem 0 !important;
+            margin: 2rem 0 !important;
           }
           
           .values-text {

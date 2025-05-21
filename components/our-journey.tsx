@@ -365,7 +365,7 @@ export default function OurJourney() {
         </div>
 
         {/* Timeline Navigation */}
-        <div className="mb-12 relative">
+        <div className="mb-6 relative">
           {/* Timeline Track */}
           <div className="absolute top-1/2 left-0 right-0 h-1 bg-blue-900/50 transform -translate-y-1/2 rounded-full"></div>
 
@@ -470,7 +470,7 @@ export default function OurJourney() {
         </div>
 
         {/* Content Slideshow */}
-        <div className="relative">
+        <div className="relative mt-[-10px]">
           {/* Navigation Buttons */}
           <div className="absolute top-1/2 -left-2 sm:left-0 transform -translate-y-1/2 z-20">
             <Button
@@ -497,7 +497,7 @@ export default function OurJourney() {
           </div>
 
           {/* Content Cards */}
-          <div className="mx-8 sm:mx-12">
+          <div className="mx-8 sm:mx-12 mt-2">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}

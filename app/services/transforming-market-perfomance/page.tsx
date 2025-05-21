@@ -347,7 +347,7 @@ export default function TransformingMarketPerformancePage() {
             </div>
           </div>
 
-          {/* Separator Line */}
+         {/* Separator Line */}
           <SeparatorLine />
 
           {/* Retail Audit Studies Section */}
@@ -357,7 +357,7 @@ export default function TransformingMarketPerformancePage() {
                 {/* Left side - Heading and text */}
                 <div>
                   <motion.h1
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                    className="text-4xl md:text-5xl lg:text-6xl mb-6 whitespace-nowrap"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -368,9 +368,11 @@ export default function TransformingMarketPerformancePage() {
                       animate={{ width: 80 }}
                       transition={{ duration: 1, delay: 0.3 }}
                     />
-                    <span className="text-white">Retail</span>{" "}
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600">
-                      Audit Studies
+                    <span className="text-white">
+                      Retail{" "}
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600">
+                        Audit Studies
+                      </span>
                     </span>
                   </motion.h1>
 
@@ -406,7 +408,7 @@ export default function TransformingMarketPerformancePage() {
                         <div className="ml-4 h-px flex-grow bg-gradient-to-r from-white/30 to-transparent"></div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-3">Market Measurement</h3>
+                      <h3 className="text-xl text-white mb-3">Market Measurement</h3>
                       <p className="text-white/80 mb-6">
                         Data-driven insights to understand market dynamics and track performance against competition
                       </p>
@@ -448,7 +450,7 @@ export default function TransformingMarketPerformancePage() {
                         width={600}
                         height={400}
                         className="rounded-xl object-cover transition-transform duration-300 group-hover:scale-110"
-                        style={{ width: '600px', height: '400px' }}
+                        style={{ width: "600px", height: "400px" }}
                       />
                     </div>
                   </motion.div>
@@ -467,7 +469,7 @@ export default function TransformingMarketPerformancePage() {
                 {/* Left side - Heading and text */}
                 <div>
                   <motion.h1
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                    className="text-4xl md:text-5xl lg:text-6xl mb-6 whitespace-nowrap"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -478,9 +480,11 @@ export default function TransformingMarketPerformancePage() {
                       animate={{ width: 80 }}
                       transition={{ duration: 1, delay: 0.3 }}
                     />
-                    <span className="text-white">Retail</span>{" "}
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">
-                      Census
+                    <span className="text-white">
+                      Retail{" "}
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">
+                        Census
+                      </span>
                     </span>
                   </motion.h1>
 
@@ -494,7 +498,6 @@ export default function TransformingMarketPerformancePage() {
                     mapping and categorization of retail outlets
                   </motion.p>
 
-                  
                   {/* Retail Profiling & Segmentation section */}
                   <motion.div
                     className="group relative overflow-hidden rounded-xl mt-8"
@@ -517,7 +520,7 @@ export default function TransformingMarketPerformancePage() {
                         <div className="ml-4 h-px flex-grow bg-gradient-to-r from-white/30 to-transparent"></div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-3">Retail Profiling & Segmentation</h3>
+                      <h3 className="text-xl text-white mb-3">Retail Profiling & Segmentation</h3>
                       <p className="text-white/80 mb-6">
                         Comprehensive mapping & categorization of retail outlets to identify opportunities and optimize
                         distribution strategies
@@ -560,7 +563,7 @@ export default function TransformingMarketPerformancePage() {
                         width={600}
                         height={400}
                         className="rounded-xl object-cover transition-transform duration-300 group-hover:scale-110"
-                        style={{ width: '600px', height: '400px' }}
+                        style={{ width: "600px", height: "400px" }}
                       />
                     </div>
                   </motion.div>
@@ -579,7 +582,7 @@ export default function TransformingMarketPerformancePage() {
                 {/* Left side - Heading and text */}
                 <div>
                   <motion.h1
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                    className="text-4xl md:text-5xl lg:text-6xl mb-6 whitespace-nowrap"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -590,8 +593,12 @@ export default function TransformingMarketPerformancePage() {
                       animate={{ width: 80 }}
                       transition={{ duration: 1, delay: 0.3 }}
                     />
-                    <span className="text-white">Merchandizing</span>{" "}
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600">Audits</span>
+                    <span className="text-white">
+                      Merchandizing{" "}
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600">
+                        Audits
+                      </span>
+                    </span>
                   </motion.h1>
 
                   <motion.p
@@ -626,7 +633,7 @@ export default function TransformingMarketPerformancePage() {
                         <div className="ml-4 h-px flex-grow bg-gradient-to-r from-white/30 to-transparent"></div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-3">In-Store Compliance Audits</h3>
+                      <h3 className="text-xl text-white mb-3">In-Store Compliance Audits</h3>
                       <p className="text-white/80 mb-6">
                         Innovative audit methodologies to ensure brand guidelines and merchandising standards are
                         maintained
@@ -669,7 +676,7 @@ export default function TransformingMarketPerformancePage() {
                         width={600}
                         height={400}
                         className="rounded-xl object-cover transition-transform duration-300 group-hover:scale-110"
-                        style={{ width: '600px', height: '400px' }}
+                        style={{ width: "600px", height: "400px" }}
                       />
                     </div>
                   </motion.div>
@@ -688,7 +695,7 @@ export default function TransformingMarketPerformancePage() {
                 {/* Left side - Heading and text */}
                 <div>
                   <motion.h1
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                    className="text-4xl md:text-5xl lg:text-6xl mb-6 whitespace-nowrap"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -699,11 +706,13 @@ export default function TransformingMarketPerformancePage() {
                       animate={{ width: 80 }}
                       transition={{ duration: 1, delay: 0.3 }}
                     />
-                    <span className="text-white">Trade</span>{" "}
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">
-                      Margin
-                    </span>{" "}
-                    <span className="text-white">Studies</span>
+                    <span className="text-white">
+                      Trade{" "}
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">
+                        Margin
+                      </span>{" "}
+                      Studies
+                    </span>
                   </motion.h1>
 
                   <motion.p
@@ -712,8 +721,8 @@ export default function TransformingMarketPerformancePage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                   >
-                    Comprehensive analysis of pricing strategies, discount patterns, and margin structures to help optimize
-                    pricing and promotional strategies
+                    Comprehensive analysis of pricing strategies, discount patterns, and margin structures to help
+                    optimize pricing and promotional strategies
                   </motion.p>
 
                   {/* Price Implementation Tracking section */}
@@ -738,7 +747,7 @@ export default function TransformingMarketPerformancePage() {
                         <div className="ml-4 h-px flex-grow bg-gradient-to-r from-white/30 to-transparent"></div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-3">Price Implementation Tracking</h3>
+                      <h3 className="text-xl text-white mb-3">Price Implementation Tracking</h3>
                       <p className="text-white/80 mb-6">
                         Comprehensive monitoring of pricing strategies to ensure consistency and competitiveness
                       </p>
@@ -780,7 +789,7 @@ export default function TransformingMarketPerformancePage() {
                         width={600}
                         height={400}
                         className="rounded-xl object-cover transition-transform duration-300 group-hover:scale-110"
-                        style={{ width: '600px', height: '400px' }}
+                        style={{ width: "600px", height: "400px" }}
                       />
                     </div>
                   </motion.div>
@@ -799,7 +808,7 @@ export default function TransformingMarketPerformancePage() {
                 {/* Left side - Heading and text */}
                 <div>
                   <motion.h1
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+                    className="text-4xl md:text-5xl lg:text-6xl mb-6 whitespace-nowrap"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -810,11 +819,13 @@ export default function TransformingMarketPerformancePage() {
                       animate={{ width: 80 }}
                       transition={{ duration: 1, delay: 0.3 }}
                     />
-                    <span className="text-white">Asset</span>{" "}
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">
-                      Utilization
-                    </span>{" "}
-                    <span className="text-white">Tracking</span>
+                    <span className="text-white">
+                      Asset{" "}
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-blue-500">
+                        Utilization
+                      </span>{" "}
+                      Tracking
+                    </span>
                   </motion.h1>
 
                   <motion.p
@@ -823,8 +834,8 @@ export default function TransformingMarketPerformancePage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                   >
-                    Comprehensive monitoring and analysis of your retail assets to ensure maximum return on investment and
-                    optimal utilization across all your retail locations
+                    Comprehensive monitoring and analysis of your retail assets to ensure maximum return on investment
+                    and optimal utilization across all your retail locations
                   </motion.p>
 
                   {/* Tools of Trade Tracking section */}
@@ -849,7 +860,7 @@ export default function TransformingMarketPerformancePage() {
                         <div className="ml-4 h-px flex-grow bg-gradient-to-r from-white/30 to-transparent"></div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-3">Tools of Trade Tracking</h3>
+                      <h3 className="text-xl text-white mb-3">Tools of Trade Tracking</h3>
                       <p className="text-white/80 mb-6">
                         Effective management & utilization tracking of marketing assets (Tools of Trade)
                       </p>
@@ -891,7 +902,7 @@ export default function TransformingMarketPerformancePage() {
                         width={600}
                         height={400}
                         className="rounded-xl object-cover transition-transform duration-300 group-hover:scale-110"
-                        style={{ width: '600px', height: '400px' }}
+                        style={{ width: "600px", height: "400px" }}
                       />
                     </div>
                   </motion.div>

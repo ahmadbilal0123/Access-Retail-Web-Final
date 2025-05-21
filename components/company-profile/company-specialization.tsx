@@ -120,12 +120,15 @@ function SpecializationCard({ title, description, imageSrc, color }) {
     >
       <CardContent className="p-0">
         <div className="relative h-48 overflow-hidden">
-          <Image
-            src={imageSrc || "/placeholder.svg"}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
-          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Image
+              src={imageSrc || "/placeholder.svg"}
+              alt={title}
+              className="object-contain w-full h-full p-4"
+              width={300}
+              height={150}
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 to-transparent"></div>
 
           {/* Animated glow effect */}
@@ -145,4 +148,3 @@ function SpecializationCard({ title, description, imageSrc, color }) {
     </Card>
   )
 }
-
