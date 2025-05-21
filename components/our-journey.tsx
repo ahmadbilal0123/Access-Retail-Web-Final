@@ -24,6 +24,7 @@ function renderWithLineBreaks(text: string) {
 export default function OurJourney() {
   const [activeIndex, setActiveIndex] = useState(0)
   const timelineRef = useRef<HTMLDivElement>(null)
+  const timelineContainerRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const [isHovering, setIsHovering] = useState(false)
   const autoScrollTimerRef = useRef<NodeJS.Timeout | null>(null)
@@ -31,6 +32,7 @@ export default function OurJourney() {
   // Add these new state variables and refs after the existing ones
   const [isTouching, setIsTouching] = useState(false)
   const touchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const pageScrollPositionRef = useRef({ x: 0, y: 0 })
 
   // Timeline data
   const timelineData = [
@@ -147,78 +149,105 @@ export default function OurJourney() {
     },
   ]
 
-  // Navigation functions
-  const goToNext = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setActiveIndex((prev) => (prev === timelineData.length - 1 ? 0 : prev + 1))
-  }
-
-  const goToPrev = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setActiveIndex((prev) => (prev === 0 ? timelineData.length - 1 : prev - 1))
-  }
-
-  const goToIndex = (index: number, e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setActiveIndex(index)
-  }
-
-  // Scroll active timeline marker into view without affecting page scroll
-  useEffect(() => {
-    if (timelineRef.current) {
-      const activeMarker = timelineRef.current?.querySelector(`[data-index="${activeIndex}"]`)
-      if (activeMarker) {
-        // Save current scroll position
-        const scrollX = window.scrollX
-        const scrollY = window.scrollY
-
-        // Scroll the marker into view
-        activeMarker.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "center",
-        })
-
-        // Restore original scroll position
-        window.scrollTo(scrollX, scrollY)
-      }
+  // Save current page scroll position
+  const saveScrollPosition = () => {
+    pageScrollPositionRef.current = {
+      x: window.scrollX,
+      y: window.scrollY,
     }
+  }
+
+  // Restore page scroll position
+  const restoreScrollPosition = () => {
+    window.scrollTo(pageScrollPositionRef.current.x, pageScrollPositionRef.current.y)
+  }
+
+  // Scroll timeline marker into view without affecting page scroll
+  const scrollMarkerIntoView = (index: number) => {
+    if (!timelineRef.current) return
+
+    const activeMarker = timelineRef.current.querySelector(`[data-index="${index}"]`)
+    if (!activeMarker) return
+
+    // For horizontal scrolling within the timeline container only
+    if (timelineContainerRef.current) {
+      saveScrollPosition()
+
+      const container = timelineContainerRef.current
+      const markerRect = (activeMarker as HTMLElement).getBoundingClientRect()
+      const containerRect = container.getBoundingClientRect()
+
+      // Calculate the scroll position to center the marker
+      const scrollLeft = (activeMarker as HTMLElement).offsetLeft - containerRect.width / 2 + markerRect.width / 2
+
+      // Scroll the container horizontally
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: "smooth",
+      })
+
+      // Ensure page position doesn't change
+      setTimeout(restoreScrollPosition, 50)
+    }
+  }
+
+  // Navigation functions with improved event handling
+  const goToNext = (e: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    saveScrollPosition()
+    setActiveIndex((prev) => (prev === timelineData.length - 1 ? 0 : prev + 1))
+    setTimeout(restoreScrollPosition, 50)
+  }
+
+  const goToPrev = (e: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    saveScrollPosition()
+    setActiveIndex((prev) => (prev === 0 ? timelineData.length - 1 : prev - 1))
+    setTimeout(restoreScrollPosition, 50)
+  }
+
+  const goToIndex = (index: number, e: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    saveScrollPosition()
+    setActiveIndex(index)
+    setTimeout(restoreScrollPosition, 50)
+  }
+
+  // Update scroll when active index changes
+  useEffect(() => {
+    scrollMarkerIntoView(activeIndex)
   }, [activeIndex])
 
   // Initialize timeline on mount
   useEffect(() => {
     if (timelineRef.current) {
       setTimeout(() => {
-        const activeMarker = timelineRef.current.querySelector(`[data-index="${activeIndex}"]`)
-        if (activeMarker) {
-          // Save current scroll position
-          const scrollX = window.scrollX
-          const scrollY = window.scrollY
-
-          // Scroll the marker into view
-          activeMarker.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "center",
-          })
-
-          // Restore original scroll position
-          window.scrollTo(scrollX, scrollY)
-        }
+        scrollMarkerIntoView(activeIndex)
       }, 500)
     }
   }, [])
 
-  // Auto-scroll functionality
+  // Auto-scroll functionality with improved mobile handling
   useEffect(() => {
     // Function to handle auto-scrolling
     const startAutoScroll = () => {
       autoScrollTimerRef.current = setInterval(() => {
         if (!isHovering && !isTouching) {
+          saveScrollPosition()
           setActiveIndex((prev) => (prev === timelineData.length - 1 ? 0 : prev + 1))
+          setTimeout(restoreScrollPosition, 50)
         }
       }, 5000) // Scroll every 5 seconds
     }
@@ -237,8 +266,9 @@ export default function OurJourney() {
     }
   }, [isHovering, isTouching, timelineData.length])
 
-  // Touch event handlers
+  // Improved touch event handlers
   const handleTouchStart = (e: React.TouchEvent) => {
+    saveScrollPosition()
     setIsTouching(true)
     // Clear any existing timeout
     if (touchTimeoutRef.current) {
@@ -251,6 +281,9 @@ export default function OurJourney() {
     touchTimeoutRef.current = setTimeout(() => {
       setIsTouching(false)
     }, 5000)
+
+    // Ensure page position is restored
+    setTimeout(restoreScrollPosition, 50)
   }
 
   // Robust key formatter: preserves all-uppercase abbreviations (like NRA)
@@ -347,11 +380,12 @@ export default function OurJourney() {
 
           {/* Timeline Markers Container */}
           <div
-            ref={timelineRef}
+            ref={timelineContainerRef}
             className="flex overflow-x-auto py-8 hide-scrollbar relative px-4 md:px-12 lg:px-24 xl:px-32 mx-auto"
-            style={{ scrollbarWidth: "none" }}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            onScroll={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between w-full min-w-max mx-auto">
+            <div ref={timelineRef} className="flex justify-between w-full min-w-max mx-auto">
               {timelineData.map((item, index) => (
                 <div
                   key={item.id}
@@ -418,15 +452,15 @@ export default function OurJourney() {
           <div className="flex justify-center mt-2 md:hidden">
             <div className="flex space-x-1">
               {timelineData.map((_, index) => (
-                <div
+                <button
                   key={index}
                   className={cn(
                     "w-2 h-2 rounded-full transition-all duration-300",
                     index === activeIndex ? "bg-blue-500 w-4" : "bg-blue-800/70",
                   )}
-                  onClick={(e) => {
+                  onClick={(e) => goToIndex(index, e)}
+                  onTouchEnd={(e) => {
                     e.preventDefault()
-                    e.stopPropagation()
                     goToIndex(index, e)
                   }}
                 />
